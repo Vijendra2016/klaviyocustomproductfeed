@@ -99,6 +99,7 @@ export default function KeyValueEditor() {
   return (
     <div className="flex flex-col items-center gap-6 w-full max-w-md">
       <h2 className="text-2xl font-bold text-gray-800 mb-2">Key-Value Feed Editor</h2>
+      <p> Copy the id same as product feed and update the text for CTA </p>
 
       <ul className="w-full">
         {items.map((item, index) => (
@@ -185,7 +186,7 @@ export default function KeyValueEditor() {
         className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600
                    text-black font-medium px-8 py-3 rounded-full transition cursor-pointer mt-4"
       >
-        Update Web Feed
+        Update Web Feed for CTA copy
       </button>
 
       {message && <p className="mt-2">{message}</p>}

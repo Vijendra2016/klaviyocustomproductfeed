@@ -133,7 +133,7 @@ export default function KlaviyoFeedEditor() {
         className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600
                    text-black font-medium px-8 py-3 rounded-full transition cursor-pointer mt-2"
       >
-        Update Web Feed
+        Update Web Feed for Product
       </button>
 
       {message && <p className="mt-2">{message}</p>}
