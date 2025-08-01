@@ -22,9 +22,11 @@ export default function KeyValueEditor() {
         const response = await fetch(
           "https://api.github.com/gists/aadfaef61cabe648e09ab848d2d23e31"
         );
-        const data = await response.json();
+        const data = (await response.json()) as {
+          files: Record<string, { content: string }>;
+        };
 
-        const jsonContent: string = data.files["gistfile1.json"].content;
+        const jsonContent = data.files["gistfile1.json"].content;
         const parsedData: Record<string, string> = JSON.parse(jsonContent);
 
         // Convert to array
@@ -33,8 +35,12 @@ export default function KeyValueEditor() {
         );
 
         setItems(existingItems);
-      } catch (err: any) {
-        console.error("Error fetching gist:", err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.error("Error fetching gist:", err.message);
+        } else {
+          console.error("Unknown error fetching gist");
+        }
       }
     };
 
@@ -71,14 +77,18 @@ export default function KeyValueEditor() {
         body: JSON.stringify({ jsonData: gistData }),
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as { error?: string };
       if (response.ok) {
         setMessage("✅ Gist updated successfully!");
       } else {
         setMessage("❌ Error: " + (data.error || "Unknown server error"));
       }
-    } catch (err: any) {
-      setMessage("❌ Error: " + err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setMessage("❌ Error: " + err.message);
+      } else {
+        setMessage("❌ Unknown error occurred");
+      }
     }
   };
 
@@ -89,14 +99,23 @@ export default function KeyValueEditor() {
       <ul className="w-full">
         {items.map((item, index) => (
           <li key={index} className="flex items-center gap-2 mb-3">
+            {/* ID input with conditional onChange */}
             <input
               type="text"
               value={item.id}
               readOnly={!item.isNew}
+              onChange={(e) => {
+                if (item.isNew) {
+                  const updated = [...items];
+                  updated[index].id = e.target.value;
+                  setItems(updated);
+                }
+              }}
               className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 w-32
                          focus:outline-none focus:ring-2 focus:ring-gray-400
                          focus:border-gray-400 transition"
             />
+            {/* Label input */}
             <input
               type="text"
               value={item.label}

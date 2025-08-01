@@ -5,11 +5,12 @@ export async function POST(req: Request) {
     const body = await req.json();
     const jsonData = body.jsonData as Record<string, string>;
 
-    if (!jsonData || typeof jsonData !== "object") {
+    // Validate payload
+    if (!jsonData || typeof jsonData !== "object" || Array.isArray(jsonData)) {
       return NextResponse.json({ error: "Invalid JSON object" }, { status: 400 });
     }
 
-    const gistId = "aadfaef61cabe648e09ab848d2d23e31"; // second gist
+    const gistId = "aadfaef61cabe648e09ab848d2d23e31"; // key-value gist
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
     if (!GITHUB_TOKEN) {
@@ -24,7 +25,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         files: {
-          "gistfile1.json": { // filename for key-value feed
+          "gistfile1.json": {
             content: JSON.stringify(jsonData, null, 2),
           },
         },
@@ -36,9 +37,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: errorText }, { status: 500 });
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as unknown;
     return NextResponse.json({ success: true, data });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message || "Unknown server error" }, { status: 500 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json({ error: "Unknown server error" }, { status: 500 });
   }
 }
