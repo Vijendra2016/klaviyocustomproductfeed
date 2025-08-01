@@ -79,7 +79,7 @@ export default function KeyValueEditor() {
 
       const data = (await response.json()) as { error?: string };
       if (response.ok) {
-        setMessage("✅ Gist updated successfully!");
+        setMessage("✅ Webfeed  updated successfully!");
 
         // Mark all items as saved (read-only now)
         const updatedItems = items.map((item) => ({ ...item, isNew: false }));
@@ -98,8 +98,12 @@ export default function KeyValueEditor() {
 
   return (
     <div className="flex flex-col items-center gap-6 w-full max-w-md">
-      <h2 className="text-2xl font-bold text-gray-800 mb-2">Key-Value Feed Editor</h2>
-      <p> Copy the id same as product feed and update the text for CTA </p>
+      <h2 className="text-lg font-bold text-gray-800 font-[family-name:var(--font-geist-mono)]"> Product - CTA Copy</h2>
+      
+
+      <p className=" font-[family-name:var(--font-geist-mono)]">
+      Copy the id same as product feed and update the text for CTA
+      </p>
 
       <ul className="w-full">
         {items.map((item, index) => (
@@ -159,8 +163,8 @@ export default function KeyValueEditor() {
           placeholder="New ID"
           value={newId}
           onChange={(e) => setNewId(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 w-56
-                     focus:outline-none focus:ring-2 focus:ring-green-400 
+          className="border border-black rounded-lg px-3 py-2 text-gray-700 w-56
+                     focus:outline-none focus:ring-2   bg-white focus:ring-green-400 
                      focus:border-green-400 transition"
         />
         <input
@@ -168,8 +172,8 @@ export default function KeyValueEditor() {
           placeholder="New Label"
           value={newLabel}
           onChange={(e) => setNewLabel(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 flex-1
-                     focus:outline-none focus:ring-2 focus:ring-green-400 
+          className="border border-black rounded-lg px-3 py-2 text-gray-700 flex-1
+                     focus:outline-none focus:ring-2  bg-white focus:ring-green-400 
                      focus:border-green-400 transition"
         />
         <button

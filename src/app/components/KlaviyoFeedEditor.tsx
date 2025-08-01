@@ -62,7 +62,7 @@ export default function KlaviyoFeedEditor() {
 
       const data = await response.json();
       if (response.ok) {
-        setMessage("✅ Gist updated successfully!");
+        setMessage("✅ Webfeed is  updated successfully!");
         // Lock items as saved
         setItems(items.map((item) => ({ ...item, isNew: false })));
       } else {
@@ -74,9 +74,9 @@ export default function KlaviyoFeedEditor() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full max-w-md">
-      <h1 className="text-2xl font-bold text-gray-800 mb-2">Klaviyo Custom Feed</h1>
-      <h2>Enter Variant or Product ID</h2>
+<div className="flex flex-col items-center gap-4 w-full max-w-md mx-auto">
+      <h1 className="text-lg font-bold text-gray-800 font-[family-name:var(--font-geist-mono)]">Klaviyo Custom product Feed</h1>
+      <p className=" font-[family-name:var(--font-geist-mono)]">Enter Variant or Product ID on klaviyo </p>
 
       <ul className="w-full">
         {items.map((item, index) => (
@@ -115,8 +115,8 @@ export default function KlaviyoFeedEditor() {
           placeholder="Enter new ID"
           value={newId}
           onChange={(e) => setNewId(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 w-56
-                     focus:outline-none focus:ring-2 focus:ring-green-400 
+          className="border border-black rounded-lg px-3 py-2 text-gray-700 w-56 ring-green-400 
+                     focus:outline-none focus:ring-2 focus:ring-green-400 bg-white
                      focus:border-green-400 transition"
         />
         <button
@@ -128,13 +128,15 @@ export default function KlaviyoFeedEditor() {
       </div>
 
       {/* Update Button */}
-      <button
-        onClick={updateGist}
-        className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600
-                   text-black font-medium px-8 py-3 rounded-full transition cursor-pointer mt-2"
-      >
-        Update Web Feed for Product
-      </button>
+     <div className="flex  w-full mt-2">
+    <button
+      onClick={updateGist}
+      className="flex items-center  gap-2 bg-orange-500 hover:bg-orange-600
+                 text-black font-medium px-8 py-3 rounded-full transition cursor-pointer"
+    >
+      Update Web Feed for Product
+    </button>
+  </div>
 
       {message && <p className="mt-2">{message}</p>}
     </div>
