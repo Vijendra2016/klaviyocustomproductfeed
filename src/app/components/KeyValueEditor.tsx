@@ -115,7 +115,7 @@ export default function KeyValueEditor() {
                   setItems(updated);
                 }
               }}
-              className={`border border-gray-300 rounded-lg px-3 py-2 text-gray-700 w-32
+              className={`border border-gray-300 rounded-lg px-3 py-2 text-gray-700 w-56
                          focus:outline-none focus:ring-2 focus:ring-gray-400
                          focus:border-gray-400 transition ${
                            !item.isNew ? "bg-gray-100 cursor-not-allowed" : ""
@@ -158,7 +158,7 @@ export default function KeyValueEditor() {
           placeholder="New ID"
           value={newId}
           onChange={(e) => setNewId(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 w-32
+          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 w-56
                      focus:outline-none focus:ring-2 focus:ring-green-400 
                      focus:border-green-400 transition"
         />
