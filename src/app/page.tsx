@@ -24,6 +24,8 @@ export default function Home() {
         <KeyValueEditor />
       </div>
 
+      <p className="mt-10 text-center  text-sm text-red-800 font-[family-name:var(--font-geist-mono)]">Feed updates may take a few minutes because of Git CDN caching</p>
+
       <footer className="mt-10 text-center  text-sm text-gray-800 font-[family-name:var(--font-geist-mono)]">
         Custom App developed by Retrospec Tech team
       </footer>
