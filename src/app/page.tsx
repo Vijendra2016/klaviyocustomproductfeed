@@ -1,103 +1,152 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
+
+interface JsonItem {
+  id: string;
+  isNew?: boolean; // flag to detect new entries
+}
+
 export default function Home() {
+  const [items, setItems] = useState<JsonItem[]>([]);
+  const [newId, setNewId] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+
+  // Fetch latest gist JSON from GitHub API
+  useEffect(() => {
+    const fetchGist = async () => {
+      try {
+        const response = await fetch(
+          "https://api.github.com/gists/478e7b10fade2d4953b2563c6319490b"
+        );
+        const data = await response.json();
+
+        const jsonContent: string = data.files["viditest.json"].content;
+        const parsedData: JsonItem[] = JSON.parse(jsonContent) as JsonItem[];
+
+        // Mark all existing items as not new (read-only)
+        const existingItems: JsonItem[] = parsedData.map((item: JsonItem) => ({
+          ...item,
+          isNew: false,
+        }));
+
+        setItems(existingItems);
+      } catch (err) {
+        console.error("Error fetching gist:", err);
+      }
+    };
+
+    fetchGist();
+  }, []);
+
+  // Add a new ID
+  const addItem = () => {
+    if (!newId.trim()) return;
+    setItems([...items, { id: newId.trim(), isNew: true }]);
+    setNewId("");
+  };
+
+  // Delete an ID
+  const deleteItem = (index: number) => {
+    const updated = [...items];
+    updated.splice(index, 1);
+    setItems(updated);
+  };
+
+  // Update Gist (save all items to Gist)
+  const updateGist = async () => {
+    try {
+      // Strip isNew before sending to Gist
+      const gistData: { id: string }[] = items.map(({ id }) => ({ id }));
+
+      const response = await fetch("/api/update-gist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jsonData: gistData }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage("✅ Gist updated successfully!");
+
+        // Refresh latest data from GitHub API after save
+        const latest = await fetch(
+          "https://api.github.com/gists/478e7b10fade2d4953b2563c6319490b"
+        );
+        const latestData = await latest.json();
+        const jsonContent: string = latestData.files["viditest.json"].content;
+
+        const refreshedItems: JsonItem[] = (JSON.parse(jsonContent) as JsonItem[]).map(
+          (item: JsonItem) => ({ ...item, isNew: false })
+        );
+
+        setItems(refreshedItems);
+      } else {
+        setMessage("❌ Error: " + data.error);
+      }
+    } catch (err: any) {
+      setMessage("❌ Error: " + err.message);
+    }
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
+    <div style={{ padding: 20 }}>
+       <Image
           className="dark:invert"
-          src="/next.svg"
+          src="https://cdn.shopify.com/s/files/1/2423/6599/files/logolockup_sticker.png"
           alt="Next.js logo"
           width={180}
           height={38}
           priority
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+        
+    
+      <h1>Klaviyo Custom Feed – Enter Variant or Product ID</h1>
+
+      <ul>
+        {items.map((item, index) => (
+          <li key={index} style={{ marginBottom: 8 }}>
+            <input
+              type="text"
+              value={item.id}
+              readOnly={!item.isNew} // Existing IDs are read-only
+              onChange={(e) => {
+                if (item.isNew) {
+                  const updated = [...items];
+                  updated[index].id = e.target.value;
+                  setItems(updated);
+                }
+              }}
+              style={{
+                marginRight: 10,
+                backgroundColor: item.isNew ? "white" : "#f0f0f0",
+                cursor: item.isNew ? "text" : "not-allowed",
+              }}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            <button onClick={() => deleteItem(index)}>❌ Delete</button>
+          </li>
+        ))}
+      </ul>
+
+      <div style={{ marginTop: 10 }}>
+        <input
+          type="text"
+          placeholder="Enter new ID"
+          value={newId}
+          onChange={(e) => setNewId(e.target.value)}
+          style={{ marginRight: 10 }}
+        />
+        <button onClick={addItem}>➕ Add</button>
+      </div>
+
+      <div style={{ marginTop: 20 }}>
+        <button onClick={updateGist}>💾 Update Gist</button>
+      </div>
+
+      <p>{message}</p>
     </div>
   );
 }
