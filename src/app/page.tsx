@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-
 interface JsonItem {
   id: string;
   isNew?: boolean; // flag to detect new entries
@@ -33,8 +32,12 @@ export default function Home() {
         }));
 
         setItems(existingItems);
-      } catch (err) {
-        console.error("Error fetching gist:", err);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.error("Error fetching gist:", err.message);
+        } else {
+          console.error("Unknown error fetching gist");
+        }
       }
     };
 
@@ -84,26 +87,29 @@ export default function Home() {
 
         setItems(refreshedItems);
       } else {
-        setMessage("❌ Error: " + data.error);
+        setMessage("❌ Error: " + (data.error || "Unknown server error"));
       }
-    } catch (err: any) {
-      setMessage("❌ Error: " + err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setMessage("❌ Error: " + err.message);
+      } else {
+        setMessage("❌ An unknown error occurred");
+      }
     }
   };
 
   return (
     <div style={{ padding: 20 }}>
-       <Image
-          className="dark:invert"
-          src="https://cdn.shopify.com/s/files/1/2423/6599/files/logolockup_sticker.png"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
+      <Image
+        className="dark:invert"
+        src="https://cdn.shopify.com/s/files/1/2423/6599/files/logolockup_sticker.png"
+        alt="Next.js logo"
+        width={180}
+        height={38}
+        priority
+        unoptimized
+      />
 
-        
-    
       <h1>Klaviyo Custom Feed – Enter Variant or Product ID</h1>
 
       <ul>

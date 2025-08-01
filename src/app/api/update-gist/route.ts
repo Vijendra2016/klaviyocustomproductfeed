@@ -6,13 +6,14 @@ interface JsonItem {
 
 export async function POST(req: Request) {
   try {
-    const { jsonData } = (await req.json()) as { jsonData: JsonItem[] };
+    const body = (await req.json()) as { jsonData?: JsonItem[] };
+    const jsonData = body.jsonData;
 
     if (!Array.isArray(jsonData)) {
       return NextResponse.json({ error: "Invalid JSON array" }, { status: 400 });
     }
 
-    const gistId = "478e7b10fade2d4953b2563c6319490b"; // Your gist
+    const gistId = "478e7b10fade2d4953b2563c6319490b"; // Your gist ID
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
     if (!GITHUB_TOKEN) {
@@ -39,10 +40,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: errorText }, { status: 500 });
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as unknown;
     return NextResponse.json({ success: true, data });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json({ error: "Unknown server error" }, { status: 500 });
   }
 }
-
