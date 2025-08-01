@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Trash2 } from 'lucide-react';
 import { SquarePlus } from 'lucide-react';
+import KeyValueEditor from "./components/KeyValueEditor";
 
 
 
@@ -177,6 +178,8 @@ export default function Home() {
 
       <p>{message}</p>
        </div>
+
+       <KeyValueEditor/>
       </main>
        <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         
