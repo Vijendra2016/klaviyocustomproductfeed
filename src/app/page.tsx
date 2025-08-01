@@ -24,7 +24,12 @@ export default function Home() {
         <KeyValueEditor />
       </div>
 
-      <p className="mt-10 text-center  text-lg  text-red-600  font-[family-name:var(--font-geist-mono)]">When your preview product on the klaviyo template , Feed updates may take a few minutes because of Git CDN caching</p>
+      <p className="mt-10 text-center text-lg text-red-600 font-[family-name:var(--font-geist-mono)]
+              border border-red-600 rounded-md p-4 relative w-fit mx-auto bg-red-50">
+  <span className="absolute -top-3 left-4 bg-red-50 px-2 text-sm font-semibold">Note:</span>
+  When you preview a product on the Klaviyo template, feed updates may take a few minutes due to Git CDN caching.
+</p>
+
 
       <footer className="mt-10 text-center  text-sm text-gray-800 font-[family-name:var(--font-geist-mono)]">
         Custom App developed by Retrospec Tech team
