@@ -99,7 +99,9 @@ export default function Home() {
   };
 
   return (
-    <div style={{ padding: 20 }}>
+        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+
+
       <Image
         className="dark:invert"
         src="https://cdn.shopify.com/s/files/1/2423/6599/files/logolockup_sticker.png"
@@ -110,7 +112,13 @@ export default function Home() {
         unoptimized
       />
 
-      <h1>Klaviyo Custom Feed – Enter Variant or Product ID</h1>
+<main className="flex flex-col gap-[12px] row-start-2 items-center sm:items-start">
+        
+        <div className="w-full">
+           <h1 className="text-3xl sm:text-4xl font-bold text-center text-gray-800 dark:text-white mt-8 mb-4">
+ Klaviyo Custom Feed
+</h1>
+      <h1> Enter Variant or Product ID</h1>
 
       <ul>
         {items.map((item, index) => (
@@ -153,6 +161,16 @@ export default function Home() {
       </div>
 
       <p>{message}</p>
+       </div>
+      </main>
+       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+        
+        <p className="tracking-[-.01em]">
+            Custom App develop by Retrospec Tech team
+          </p>
+        
+      </footer>
     </div>
+    
   );
 }
