@@ -76,7 +76,7 @@ export default function KlaviyoFeedEditor() {
   return (
 <div className="flex flex-col items-center gap-4 w-full max-w-md mx-auto">
       <h1 className="text-lg font-bold text-gray-800 font-[family-name:var(--font-geist-mono)]">Klaviyo Custom product Feed</h1>
-      <p className=" font-[family-name:var(--font-geist-mono)]">Enter Variant or Product ID on klaviyo </p>
+      <p className=" text-gray-800 font-[family-name:var(--font-geist-mono)]">Enter Variant or Product ID on klaviyo </p>
 
       <ul className="w-full">
         {items.map((item, index) => (
