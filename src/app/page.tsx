@@ -2,6 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { Trash2 } from 'lucide-react';
+import { SquarePlus } from 'lucide-react';
+
+
 
 interface JsonItem {
   id: string;
@@ -122,7 +126,7 @@ export default function Home() {
 
       <ul>
         {items.map((item, index) => (
-          <li key={index} style={{ marginBottom: 8 }}>
+          <li key={index} style={{ marginBottom: 8 }} className="flex pb-3">
             <input
               type="text"
               value={item.id}
@@ -139,25 +143,36 @@ export default function Home() {
                 backgroundColor: item.isNew ? "white" : "#f0f0f0",
                 cursor: item.isNew ? "text" : "not-allowed",
               }}
+               className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 
+                   focus:outline-none focus:ring-2 focus:ring-gray-400 
+                   focus:border-gray-400 transition w-56"
             />
-            <button onClick={() => deleteItem(index)}>❌ Delete</button>
+            <button onClick={() => deleteItem(index)}       className="flex  cursor-pointer	 items-center gap-2 text-red-600 hover:text-red-800"
+> <Trash2 className="w-5 h-5" /> Delete</button>
           </li>
         ))}
       </ul>
 
-      <div style={{ marginTop: 10 }}>
+      <div style={{ marginTop: 10 }} className="flex">
         <input
           type="text"
           placeholder="Enter new ID"
           value={newId}
           onChange={(e) => setNewId(e.target.value)}
           style={{ marginRight: 10 }}
+          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 
+                   focus:outline-none focus:ring-2 focus:ring-green-400 
+                   focus:border-green-400 transition w-56"
         />
-        <button onClick={addItem}>➕ Add</button>
+        <button onClick={addItem} className="flex items-center cursor-pointer	 gap-2 text-green-600 hover:text-green-800"> <SquarePlus className="w-5 h-5" /> Add</button>
       </div>
 
       <div style={{ marginTop: 20 }}>
-        <button onClick={updateGist}>💾 Update Gist</button>
+        <button onClick={updateGist} className="flex items-center justify-center gap-2 
+             bg-orange-500 hover:bg-orange-600 
+             text-black font-medium 
+             px-8 py-3 rounded-full 
+             transition cursor-pointer">Update Web Feed</button>
       </div>
 
       <p>{message}</p>
