@@ -2,8 +2,9 @@
  "use client";
 
 import { useCallback } from "react";
-import KeyValueEditor from "../components/KeyValueEditor";
 import Secondproductfeed from "../components/Secondproductfeed";
+import SecondproductfeedCta from "../components/Secondproductfeedcta";
+
 export default function HomeSecondFeed() {
    const copyCode = useCallback(() => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
@@ -127,7 +128,8 @@ export default function HomeSecondFeed() {
       {/* Both feeds in one row */}
       <div className="flex flex-col lg:flex-row justify-center gap-10 w-full max-w-6xl">
         <Secondproductfeed />
-        <KeyValueEditor />
+        
+        <SecondproductfeedCta/>
       </div>
 
       <p className="mt-10 text-center  text-sm	 text-red-600 font-[family-name:var(--font-geist-mono)]

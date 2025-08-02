@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const gistId = "1df33cd7f4202874d94b8dbb8b2c291f";
+  const gistId = "0048bf1d0ad3fe396609877b2f509a0b";
   const token = process.env.GITHUB_TOKEN;
 
   if (!token) {
