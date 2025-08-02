@@ -28,7 +28,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         files: {
-          "viditest.json": {
+          "secondproductfeed.json": {
             content: JSON.stringify(jsonData, null, 2),
           },
         },
