@@ -1,6 +1,5 @@
 
  "use client";
-import Image from "next/image";
 
 import { useCallback } from "react";
 import KlaviyoFeedEditor from "./components/KlaviyoFeedEditor";
