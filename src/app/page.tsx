@@ -120,16 +120,8 @@ export default function Home() {
     }
   }, []);
   return (
-    <div className="min-h-screen p-2 flex flex-col items-center gap-10 ">
-      <Image
-        className="dark:invert"
-        src="https://cdn.shopify.com/s/files/1/2423/6599/files/logolockup_sticker.png"
-        alt="Logo"
-        width={100}
-        height={38}
-        priority
-        unoptimized
-      />
+    <div className="min-h-screen p-40 flex flex-col items-center gap-10 ">
+      
             <h1 className="text-lg font-bold text-black font-[family-name:var(--font-geist-mono)]">Klaviyo Custom Product </h1>
 
 
