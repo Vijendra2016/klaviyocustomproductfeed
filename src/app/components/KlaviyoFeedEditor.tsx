@@ -18,7 +18,7 @@ export default function KlaviyoFeedEditor() {
     const fetchGist = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/gists/478e7b10fade2d4953b2563c6319490b"
+          "/api/fetch-gist"
         );
         const data = await response.json();
 

@@ -18,7 +18,7 @@ export default function Secondproductfeed() {
     const fetchGist = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/gists/1df33cd7f4202874d94b8dbb8b2c291f"
+          "/api/fetch-second-product-feed"
         );
         const data = await response.json();
 
