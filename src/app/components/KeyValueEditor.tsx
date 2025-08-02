@@ -20,7 +20,7 @@ export default function KeyValueEditor() {
     const fetchGist = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/gists/aadfaef61cabe648e09ab848d2d23e31"
+          "/api/fetch-gist-keyvalue"
         );
         const data = (await response.json()) as {
           files: Record<string, { content: string }>;
