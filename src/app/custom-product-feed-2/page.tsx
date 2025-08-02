@@ -121,7 +121,7 @@ export default function HomeSecondFeed() {
   return (
     <div className="min-h-screen p-40 flex flex-col items-center gap-10 ">
       
-            <h1 className="text-lg font-bold text-black font-[family-name:var(--font-geist-mono)]">Klaviyo Custom Product </h1>
+            <h1 className="text-lg font-bold text-black font-[family-name:var(--font-geist-mono)]">Klaviyo Custom Product Feed 2 </h1>
 
 
       {/* Both feeds in one row */}
