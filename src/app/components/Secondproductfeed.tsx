@@ -22,7 +22,7 @@ export default function Secondproductfeed() {
         );
         const data = await response.json();
 
-        const jsonContent: string = data.files["viditest.json"].content;
+        const jsonContent: string = data.files["secondproductfeed.json"].content;
         const parsedData: JsonItem[] = JSON.parse(jsonContent);
 
         // Mark all as read-only
