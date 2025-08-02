@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         files: {
-          "gistfile1.json": {
+          "secondproductfeedcta.json": {
             content: JSON.stringify(jsonData, null, 2),
           },
         },
