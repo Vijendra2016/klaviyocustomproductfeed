@@ -77,7 +77,7 @@ export default function Home() {
                         <tr></tr>
                         <tr>
                             <td>
-                                 <p class="pricenew">
+                                 <p class="pricenew" style="font-family: antique-olive, Tahoma, Verdana, Segoe, sans-serif; font-weight: bold; font-style: normal;">
                     
                     <span class="original-price">
                        {% if catalog_item.metadata|lookup:"$compare_at_price" and catalog_item.metadata|lookup:"$compare_at_price"|floatformat:2 != "0.00" %}
@@ -99,7 +99,7 @@ export default function Home() {
                         </tr>
                         <tr>
                             <td>
-                                <p><a href="{{ catalog_item.url }}?variant={{ catalog_item.variant.id }}" class="shop-button">{{ feeds.cta|lookup:variant.id }} </a></p>
+                                <p style="font-family: antique-olive, Tahoma, Verdana, Segoe, sans-serif; font-weight: bold; font-style: normal;"><a href="{{ catalog_item.url }}?variant={{ catalog_item.variant.id }}" class="shop-button">{{ feeds.cta|lookup:variant.id }} </a></p>
                             </td>
                         </tr>
                     </tbody>
@@ -229,7 +229,7 @@ export default function Home() {
                         <tr></tr>
                         <tr>
                             <td>
-                                 <p class="pricenew">
+                                 <p class="pricenew" style="font-family: antique-olive, Tahoma, Verdana, Segoe, sans-serif; font-weight: bold; font-style: normal;">
                     
                     <span class="original-price">
                        {% if catalog_item.metadata|lookup:"$compare_at_price" and catalog_item.metadata|lookup:"$compare_at_price"|floatformat:2 != "0.00" %}
@@ -251,7 +251,7 @@ export default function Home() {
                         </tr>
                         <tr>
                             <td>
-                                <p><a href="{{ catalog_item.url }}?variant={{ catalog_item.variant.id }}" class="shop-button">{{ feeds.cta|lookup:variant.id }} </a></p>
+                                <p style="font-family: antique-olive, Tahoma, Verdana, Segoe, sans-serif; font-weight: bold; font-style: normal;"><a href="{{ catalog_item.url }}?variant={{ catalog_item.variant.id }}" class="shop-button">{{ feeds.cta|lookup:variant.id }} </a></p>
                             </td>
                         </tr>
                     </tbody>
