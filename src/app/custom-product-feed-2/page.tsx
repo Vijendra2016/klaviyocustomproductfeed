@@ -8,7 +8,7 @@ import SecondproductfeedCta from "../components/Secondproductfeedcta";
 export default function HomeSecondFeed() {
    const copyCode = useCallback(() => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
-      const code = `{% with columns=2 product_feed=feeds.myvidi|slice:":4" %}
+      const code = `{% with columns=2 product_feed=feeds.secondproductfeed|slice:":4" %}
 <style type="text/css">
     .shop-button {
         background-color: #ff6b20; /* Bright orange */
@@ -99,7 +99,7 @@ export default function HomeSecondFeed() {
                         </tr>
                         <tr>
                             <td>
-                                <p style="font-family: antique-olive, Tahoma, Verdana, Segoe, sans-serif; font-weight: bold; font-style: normal;"><a href="{{ catalog_item.url }}?variant={{ catalog_item.variant.id }}" class="shop-button">{{ feeds.cta|lookup:variant.id }} </a></p>
+                                <p style="font-family: antique-olive, Tahoma, Verdana, Segoe, sans-serif; font-weight: bold; font-style: normal;"><a href="{{ catalog_item.url }}?variant={{ catalog_item.variant.id }}" class="shop-button">{{ feeds.ctasecond|lookup:variant.id }} </a></p>
                             </td>
                         </tr>
                     </tbody>
@@ -244,7 +244,7 @@ export default function HomeSecondFeed() {
                         </tr>
                         <tr>
                             <td>
-                                <p style="font-family: antique-olive, Tahoma, Verdana, Segoe, sans-serif; font-weight: bold; font-style: normal;"><a href="{{ catalog_item.url }}?variant={{ catalog_item.variant.id }}" class="shop-button">{{ feeds.cta|lookup:variant.id }} </a></p>
+                                <p style="font-family: antique-olive, Tahoma, Verdana, Segoe, sans-serif; font-weight: bold; font-style: normal;"><a href="{{ catalog_item.url }}?variant={{ catalog_item.variant.id }}" class="shop-button">{{ feeds.ctasecond|lookup:variant.id }} </a></p>
                             </td>
                         </tr>
                     </tbody>
