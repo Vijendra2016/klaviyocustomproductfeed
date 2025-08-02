@@ -9,7 +9,7 @@ interface JsonItem {
   isNew?: boolean; // New entries editable
 }
 
-export default function SecondproductfeedCta() {
+export default function SecondproductCta() {
   const [items, setItems] = useState<JsonItem[]>([]);
   const [newId, setNewId] = useState("");
   const [newLabel, setNewLabel] = useState("");
@@ -71,7 +71,7 @@ export default function SecondproductfeedCta() {
         gistData[id] = label;
       });
 
-      const response = await fetch("/api/update-second-product-feed-cta", {
+      const response = await fetch("/api/udapte-second-product-feed-cta", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ jsonData: gistData }),
