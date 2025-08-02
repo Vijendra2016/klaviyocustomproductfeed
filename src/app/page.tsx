@@ -119,9 +119,9 @@ export default function Home() {
     }
   }, []);
   return (
-    <div className="min-h-screen p-40 flex flex-col items-center gap-10 ">
+    <div className="min-h-screen p-20 flex flex-col items-center gap-10 ">
       
-            <h1 className="text-lg font-bold text-black font-[family-name:var(--font-geist-mono)]">Klaviyo Custom Product </h1>
+            <h1 className="text-2xl  border-1 border-black p-2.5 font-light text-black font-[family-name:var(--font-geist-mono)]">Klaviyo Custom Product Feed 1 </h1>
 
 
       {/* Both feeds in one row */}
@@ -130,7 +130,7 @@ export default function Home() {
         <KeyValueEditor />
       </div>
 
-      <p className="mt-10 text-center text-lg text-red-600 font-[family-name:var(--font-geist-mono)]
+      <p className="mt-10 text-center text-sm text-red-600 font-[family-name:var(--font-geist-mono)]
               border border-red-600 rounded-md p-4 relative w-fit mx-auto bg-red-50">
   <span className="absolute -top-3 left-4 bg-red-50 px-2 text-sm font-semibold">Note:</span>
   When you preview a product on the Klaviyo template, feed updates may take a few minutes due to Git CDN caching.

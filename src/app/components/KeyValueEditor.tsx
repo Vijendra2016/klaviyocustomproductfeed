@@ -97,11 +97,10 @@ export default function KeyValueEditor() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full max-w-md">
-      <h2 className="text-lg font-bold text-gray-800 font-[family-name:var(--font-geist-mono)]"> Product - CTA Copy</h2>
-      
-
-      <p className=" font-[family-name:var(--font-geist-mono)]">
+    <div className="flex flex-col items-center gap-2 w-full max-w-md">
+      <h2 className="text-lg font-semibold text-gray-800 font-[family-name:var(--font-geist-mono)]"> Product - CTA Copy</h2>
+  
+      <p className=" text-gray-800 text-sm	font-[family-name:var(--font-geist-mono)]">
       Copy the id same as product feed and update the text for CTA
       </p>
 

@@ -74,10 +74,11 @@ export default function KlaviyoFeedEditor() {
   };
 
   return (
-<div className="flex flex-col items-center gap-4 w-full max-w-md mx-auto">
-      <h1 className="text-lg font-bold text-gray-800 font-[family-name:var(--font-geist-mono)]">Klaviyo Custom product Feed</h1>
-      <p className=" text-gray-800 font-[family-name:var(--font-geist-mono)]">Enter Variant or Product ID on klaviyo </p>
+<div className="flex flex-col items-center gap-1 w-full max-w-md mx-auto">
+   <h1 className="text-lg font-semibold text-black font-[family-name:var(--font-geist-mono)]">Klaviyo Custom product Feed</h1>
+      <p className=" text-gray-800 text-sm	 font-[family-name:var(--font-geist-mono)]">Enter Variant or Product ID on klaviyo </p>
 
+      
       <ul className="w-full">
         {items.map((item, index) => (
           <li key={index} className="flex items-center gap-2 mb-2">
