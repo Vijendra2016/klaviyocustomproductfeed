@@ -77,15 +77,24 @@ export default function Home() {
                         <tr></tr>
                         <tr>
                             <td>
-                                <p class="pricenew">
-                                    <span class="original-price">
-                                        {% if catalog_item.metadata|lookup:"$compare_at_price" and catalog_item.metadata|lookup:"$compare_at_price"|floatformat:2 != "0.00" %} {% currency_format
-                                        catalog_item.metadata|lookup:"$compare_at_price"|floatformat:2 %} {% elif catalog_item.metadata|lookup:"compare_at_price" and catalog_item.metadata|lookup:"compare_at_price"|floatformat:2 != "0.00" %}
-                                        {% currency_format catalog_item.metadata|lookup:"compare_at_price"|floatformat:2 %} {% endif %}
-                                    </span>
-                                    {% if catalog_item.metadata|lookup:"$price" %} {% currency_format catalog_item.metadata|lookup:"$price"|floatformat:2 %} {% elif catalog_item.metadata|lookup:"price" %} {% currency_format
-                                    catalog_item.metadata|lookup:"price"|floatformat:2 %} {% endif %}
-                                </p>
+                                 <p class="pricenew">
+                    
+                    <span class="original-price">
+                       {% if catalog_item.metadata|lookup:"$compare_at_price" and catalog_item.metadata|lookup:"$compare_at_price"|floatformat:2 != "0.00" %}
+    {% currency_format catalog_item.metadata|lookup:"$compare_at_price"|floatformat:2 %}
+{% elif catalog_item.metadata|lookup:"compare_at_price" and catalog_item.metadata|lookup:"compare_at_price"|floatformat:2 != "0.00" %}
+    {% currency_format catalog_item.metadata|lookup:"compare_at_price"|floatformat:2 %}
+{% endif %}
+                    </span>
+                      {% if catalog_item.metadata|lookup:"$price" %}
+                          {% currency_format catalog_item.metadata|lookup:"$price"|floatformat:2 %}
+                      {% elif catalog_item.metadata|lookup:"price" %}
+                          {% currency_format catalog_item.metadata|lookup:"price"|floatformat:2 %}
+                      {% endif %}
+                      
+                      
+                      
+                  </p>
                             </td>
                         </tr>
                         <tr>
@@ -220,15 +229,24 @@ export default function Home() {
                         <tr></tr>
                         <tr>
                             <td>
-                                <p class="pricenew">
-                                    <span class="original-price">
-                                        {% if catalog_item.metadata|lookup:"$compare_at_price" and catalog_item.metadata|lookup:"$compare_at_price"|floatformat:2 != "0.00" %} {% currency_format
-                                        catalog_item.metadata|lookup:"$compare_at_price"|floatformat:2 %} {% elif catalog_item.metadata|lookup:"compare_at_price" and catalog_item.metadata|lookup:"compare_at_price"|floatformat:2 != "0.00" %}
-                                        {% currency_format catalog_item.metadata|lookup:"compare_at_price"|floatformat:2 %} {% endif %}
-                                    </span>
-                                    {% if catalog_item.metadata|lookup:"$price" %} {% currency_format catalog_item.metadata|lookup:"$price"|floatformat:2 %} {% elif catalog_item.metadata|lookup:"price" %} {% currency_format
-                                    catalog_item.metadata|lookup:"price"|floatformat:2 %} {% endif %}
-                                </p>
+                                 <p class="pricenew">
+                    
+                    <span class="original-price">
+                       {% if catalog_item.metadata|lookup:"$compare_at_price" and catalog_item.metadata|lookup:"$compare_at_price"|floatformat:2 != "0.00" %}
+    {% currency_format catalog_item.metadata|lookup:"$compare_at_price"|floatformat:2 %}
+{% elif catalog_item.metadata|lookup:"compare_at_price" and catalog_item.metadata|lookup:"compare_at_price"|floatformat:2 != "0.00" %}
+    {% currency_format catalog_item.metadata|lookup:"compare_at_price"|floatformat:2 %}
+{% endif %}
+                    </span>
+                      {% if catalog_item.metadata|lookup:"$price" %}
+                          {% currency_format catalog_item.metadata|lookup:"$price"|floatformat:2 %}
+                      {% elif catalog_item.metadata|lookup:"price" %}
+                          {% currency_format catalog_item.metadata|lookup:"price"|floatformat:2 %}
+                      {% endif %}
+                      
+                      
+                      
+                  </p>
                             </td>
                         </tr>
                         <tr>
